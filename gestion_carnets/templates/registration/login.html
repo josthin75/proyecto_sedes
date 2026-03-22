@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido - SEDES BENI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html { height: 100%; margin: 0; overflow: hidden; background-color: #0b1118; font-family: sans-serif; }
+        .login-container { display: flex; height: 100vh; }
+        .login-brand { 
+            flex: 1; 
+            /* Se añade ?v=1 para forzar la carga del fondo */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{% static "img/fondo_sedes.jpg" %}?v=1'); 
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; color: white;
+        }
+        .login-form-section { 
+            width: 450px; background: #0b1118; color: white; 
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: -10px 0 20px rgba(0,0,0,0.4);
+        }
+        .btn-ingresar { background-color: #00c853; border: none; font-weight: bold; padding: 12px; }
+        .form-control { background: #1a232e; border: 1px solid #2d3748; color: white; padding: 12px; }
+        .form-control:focus { background: #1a232e; color: white; border-color: #00c853; box-shadow: none; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-brand text-center">
+            <div>
+                <img src="{% static 'img/logo_salud.png' %}?v=1" width="320" alt="Logo Salud Ambiental">
+                <h1 class="mt-4 fw-bold">SEDES BENI</h1>
+                <p class="fs-5 opacity-75">Gestión eficiente y transparente</p>
+            </div>
+        </div>
+        <div class="login-form-section p-5">
+            <div class="w-100 text-center">
+                <img src="{% static 'img/logo_salud.png' %}?v=1" width="80" class="mb-3">
+                <h3 class="fw-bold mb-4">Bienvenido</h3>
+                
+                <form method="POST" class="text-start">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label small text-muted fw-bold">USUARIO</label>
+                        <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small text-muted fw-bold">CONTRASEÑA</label>
+                        <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-ingresar w-100 text-white shadow-sm">
+                        INGRESAR AL SISTEMA
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
